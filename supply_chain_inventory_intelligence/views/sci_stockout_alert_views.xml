@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="sci_stockout_alert_view_tree" model="ir.ui.view">
+            <field name="name">sci.stockout.alert.view.tree</field>
+            <field name="model">sci.stockout.alert</field>
+            <field name="arch" type="xml">
+                <tree string="Stockout Alerts" decoration-danger="ai_risk_level == 'critical'" decoration-warning="ai_risk_level == 'high'" decoration-success="state == 'resolved'">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="current_stock"/>
+                    <field name="reorder_point"/>
+                    <field name="days_until_stockout"/>
+                    <field name="ai_risk_level"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="sci_stockout_alert_view_form" model="ir.ui.view">
+            <field name="name">sci.stockout.alert.view.form</field>
+            <field name="model">sci.stockout.alert</field>
+            <field name="arch" type="xml">
+                <form string="Stockout Alert">
+                    <header>
+                        <button name="action_resolve" type="object" string="Resolve" class="oe_highlight" invisible="state == 'resolved'"/>
+                        <button name="action_reactivate" type="object" string="Reactivate" invisible="state == 'active'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="active,resolved"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="warehouse_id"/>
+                                <field name="current_stock"/>
+                                <field name="reorder_point"/>
+                            </group>
+                            <group>
+                                <field name="days_until_stockout"/>
+                                <field name="ai_risk_level"/>
+                                <field name="state"/>
+                                <field name="active" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="sci_stockout_alert_view_search" model="ir.ui.view">
+            <field name="name">sci.stockout.alert.view.search</field>
+            <field name="model">sci.stockout.alert</field>
+            <field name="arch" type="xml">
+                <search string="Stockout Alerts">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <filter string="Active" name="filter_active" domain="[('state', '=', 'active')]"/>
+                    <filter string="Resolved" name="filter_resolved" domain="[('state', '=', 'resolved')]"/>
+                    <filter string="Critical" name="filter_critical" domain="[('ai_risk_level', '=', 'critical')]"/>
+                    <filter string="High" name="filter_high" domain="[('ai_risk_level', '=', 'high')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Risk Level" name="group_risk" context="{'group_by': 'ai_risk_level'}"/>
+                        <filter string="State" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Warehouse" name="group_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="sci_stockout_alert_action" model="ir.actions.act_window">
+            <field name="name">Stockout Alerts</field>
+            <field name="res_model">sci.stockout.alert</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sci_stockout_alert_view_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new stockout alert
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="sci_demand_pattern_view_tree" model="ir.ui.view">
+            <field name="name">sci.demand.pattern.view.tree</field>
+            <field name="model">sci.demand.pattern</field>
+            <field name="arch" type="xml">
+                <tree string="Demand Patterns">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="period"/>
+                    <field name="pattern_type"/>
+                    <field name="seasonality_index"/>
+                    <field name="trend_slope"/>
+                    <field name="ai_pattern_confidence"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="sci_demand_pattern_view_form" model="ir.ui.view">
+            <field name="name">sci.demand.pattern.view.form</field>
+            <field name="model">sci.demand.pattern</field>
+            <field name="arch" type="xml">
+                <form string="Demand Pattern">
+                    <header>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="period"/>
+                                <field name="pattern_type"/>
+                            </group>
+                            <group>
+                                <field name="seasonality_index"/>
+                                <field name="trend_slope"/>
+                                <field name="ai_pattern_confidence"/>
+                                <field name="active" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="sci_demand_pattern_view_search" model="ir.ui.view">
+            <field name="name">sci.demand.pattern.view.search</field>
+            <field name="model">sci.demand.pattern</field>
+            <field name="arch" type="xml">
+                <search string="Demand Patterns">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <filter string="Trend" name="filter_trend" domain="[('pattern_type', '=', 'trend')]"/>
+                    <filter string="Seasonal" name="filter_seasonal" domain="[('pattern_type', '=', 'seasonal')]"/>
+                    <filter string="Cyclical" name="filter_cyclical" domain="[('pattern_type', '=', 'cyclical')]"/>
+                    <filter string="Irregular" name="filter_irregular" domain="[('pattern_type', '=', 'irregular')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Pattern Type" name="group_pattern_type" context="{'group_by': 'pattern_type'}"/>
+                        <filter string="Period" name="group_period" context="{'group_by': 'period'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="sci_demand_pattern_action" model="ir.actions.act_window">
+            <field name="name">Demand Patterns</field>
+            <field name="res_model">sci.demand.pattern</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sci_demand_pattern_view_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new demand pattern
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

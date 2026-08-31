@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="sci_forecast_view_tree" model="ir.ui.view">
+            <field name="name">sci.forecast.view.tree</field>
+            <field name="model">sci.forecast</field>
+            <field name="arch" type="xml">
+                <tree string="Demand Forecasts" decoration-success="forecast_accuracy &gt;= 80" decoration-danger="forecast_accuracy &lt; 50">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="period"/>
+                    <field name="method"/>
+                    <field name="forecast_qty"/>
+                    <field name="actual_qty"/>
+                    <field name="forecast_accuracy"/>
+                    <field name="ai_confidence"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="sci_forecast_view_form" model="ir.ui.view">
+            <field name="name">sci.forecast.view.form</field>
+            <field name="model">sci.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Demand Forecast">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="warehouse_id"/>
+                                <field name="period"/>
+                                <field name="method"/>
+                            </group>
+                            <group>
+                                <field name="forecast_qty"/>
+                                <field name="actual_qty"/>
+                                <field name="forecast_accuracy"/>
+                                <field name="ai_confidence"/>
+                                <field name="active" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="sci_forecast_view_search" model="ir.ui.view">
+            <field name="name">sci.forecast.view.search</field>
+            <field name="model">sci.forecast</field>
+            <field name="arch" type="xml">
+                <search string="Demand Forecasts">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="period"/>
+                    <filter string="Moving Average" name="filter_moving_avg" domain="[('method', '=', 'moving_avg')]"/>
+                    <filter string="Exponential" name="filter_exponential" domain="[('method', '=', 'exponential')]"/>
+                    <filter string="ML Ensemble" name="filter_ml_ensemble" domain="[('method', '=', 'ml_ensemble')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Method" name="group_method" context="{'group_by': 'method'}"/>
+                        <filter string="Warehouse" name="group_warehouse" context="{'group_by': 'warehouse_id'}"/>
+                        <filter string="Period" name="group_period" context="{'group_by': 'period'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="sci_forecast_action" model="ir.actions.act_window">
+            <field name="name">Demand Forecasts</field>
+            <field name="res_model">sci.forecast</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sci_forecast_view_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new demand forecast
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

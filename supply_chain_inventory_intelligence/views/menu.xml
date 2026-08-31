@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu -->
+        <menuitem id="menu_sci_root"
+                  name="Supply Chain Intelligence"
+                  sequence="20"
+                  web_icon="supply_chain_inventory_intelligence,static/description/icon.png"/>
+
+        <!-- Submenus -->
+        <menuitem id="menu_sci_forecast"
+                  name="Demand Forecasts"
+                  parent="menu_sci_root"
+                  sequence="10"
+                  action="sci_forecast_action"/>
+
+        <menuitem id="menu_sci_supplier_score"
+                  name="Supplier Scores"
+                  parent="menu_sci_root"
+                  sequence="20"
+                  action="sci_supplier_score_action"/>
+
+        <menuitem id="menu_sci_stockout_alert"
+                  name="Stockout Alerts"
+                  parent="menu_sci_root"
+                  sequence="30"
+                  action="sci_stockout_alert_action"/>
+
+        <menuitem id="menu_sci_demand_pattern"
+                  name="Demand Patterns"
+                  parent="menu_sci_root"
+                  sequence="40"
+                  action="sci_demand_pattern_action"/>
+
+        <menuitem id="menu_sci_replenishment_plan"
+                  name="Replenishment Plans"
+                  parent="menu_sci_root"
+                  sequence="50"
+                  action="sci_replenishment_plan_action"/>
+    </data>
+</odoo>

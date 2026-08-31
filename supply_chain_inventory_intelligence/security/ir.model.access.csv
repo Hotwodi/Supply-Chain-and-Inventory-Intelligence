@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sci_forecast_user,sci.forecast.user,model_sci_forecast,base.group_user,1,1,1,1
+access_sci_supplier_score_user,sci.supplier.score.user,model_sci_supplier_score,base.group_user,1,1,1,1
+access_sci_stockout_alert_user,sci.stockout.alert.user,model_sci_stockout_alert,base.group_user,1,1,1,1
+access_sci_demand_pattern_user,sci.demand.pattern.user,model_sci_demand_pattern,base.group_user,1,1,1,1
+access_sci_replenishment_plan_user,sci.replenishment.plan.user,model_sci_replenishment_plan,base.group_user,1,1,1,1
