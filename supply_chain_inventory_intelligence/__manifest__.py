@@ -22,7 +22,7 @@ Features:
     'website': 'https://softaidev.pages.dev',
     'category': 'Productivity/AI',
     'license': 'LGPL-3',
-    'price': 649.99,
+    'price': 749.99,
     'application': True,
     'installable': True,
     'depends': ['base', 'web', 'mail'],
