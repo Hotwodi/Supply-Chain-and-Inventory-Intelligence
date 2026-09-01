@@ -36,5 +36,5 @@ Features:
         'views/menu.xml',
     ],
     'assets': {},
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/cover.png'],
 }
