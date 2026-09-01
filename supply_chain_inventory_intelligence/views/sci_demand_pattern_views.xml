@@ -6,7 +6,7 @@
             <field name="name">sci.demand.pattern.view.tree</field>
             <field name="model">sci.demand.pattern</field>
             <field name="arch" type="xml">
-                <tree string="Demand Patterns">
+                <list string="Demand Patterns">
                     <field name="name"/>
                     <field name="product_id"/>
                     <field name="period"/>
@@ -14,7 +14,7 @@
                     <field name="seasonality_index"/>
                     <field name="trend_slope"/>
                     <field name="ai_pattern_confidence"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -78,7 +78,7 @@
         <record id="sci_demand_pattern_action" model="ir.actions.act_window">
             <field name="name">Demand Patterns</field>
             <field name="res_model">sci.demand.pattern</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="sci_demand_pattern_view_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">

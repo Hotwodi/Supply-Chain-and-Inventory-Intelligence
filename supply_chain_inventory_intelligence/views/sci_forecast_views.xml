@@ -6,7 +6,7 @@
             <field name="name">sci.forecast.view.tree</field>
             <field name="model">sci.forecast</field>
             <field name="arch" type="xml">
-                <tree string="Demand Forecasts" decoration-success="forecast_accuracy &gt;= 80" decoration-danger="forecast_accuracy &lt; 50">
+                <list string="Demand Forecasts" decoration-success="forecast_accuracy &gt;= 80" decoration-danger="forecast_accuracy &lt; 50">
                     <field name="name"/>
                     <field name="product_id"/>
                     <field name="warehouse_id"/>
@@ -16,7 +16,7 @@
                     <field name="actual_qty"/>
                     <field name="forecast_accuracy"/>
                     <field name="ai_confidence"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -86,7 +86,7 @@
         <record id="sci_forecast_action" model="ir.actions.act_window">
             <field name="name">Demand Forecasts</field>
             <field name="res_model">sci.forecast</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="sci_forecast_view_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">

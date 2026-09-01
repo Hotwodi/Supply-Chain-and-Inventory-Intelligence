@@ -6,7 +6,7 @@
             <field name="name">sci.supplier.score.view.tree</field>
             <field name="model">sci.supplier.score</field>
             <field name="arch" type="xml">
-                <tree string="Supplier Scores" decoration-success="risk_score &lt; 30" decoration-danger="risk_score &gt;= 70">
+                <list string="Supplier Scores" decoration-success="risk_score &lt; 30" decoration-danger="risk_score &gt;= 70">
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="on_time_rate"/>
@@ -15,7 +15,7 @@
                     <field name="risk_score"/>
                     <field name="overall_score"/>
                     <field name="last_updated"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -80,7 +80,7 @@
         <record id="sci_supplier_score_action" model="ir.actions.act_window">
             <field name="name">Supplier Scores</field>
             <field name="res_model">sci.supplier.score</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="sci_supplier_score_view_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">

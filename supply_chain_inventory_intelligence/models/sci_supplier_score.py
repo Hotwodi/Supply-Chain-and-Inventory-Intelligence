@@ -20,7 +20,7 @@ class SciSupplierScore(models.Model):
         string='Supplier',
         required=True,
         tracking=True,
-        domain="[('supplier_rank', '>', 0)]",
+        domain="[('is_company', '=', True)]",
     )
     on_time_rate = fields.Float(
         string='On-Time Delivery Rate (%)',
